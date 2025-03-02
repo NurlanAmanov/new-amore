@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+header{
+    overflow: hidden;
+}
+
+.herofon{
+    background: url("assets/bgfon2.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.swiper {
+    width: 100%;
+    height: 200px; /* Default (mobil üçün) */
+}
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* 📱 Kiçik ekranlar (mobil) */
+  @media (min-width: 480px) {
+    .swiper {
+      height: 300px;
+    }
+  }
+  
+  /* 📱 Orta ölçülü cihazlar (tablet) */
+  @media (min-width: 768px) {
+    .swiper {
+      height: 100%;
+    }
+  }
+  
+/* Scrollbar genişliyini azaltmaq */
+.scrolbar::-webkit-scrollbar {
+  width: 0px; /* Şaquli scrollbar üçün genişlik */
+  height: 0px; /* Üfüqi scrollbar üçün hündürlük */
+}
+
+/* Scrollbar arxa fonu */
+.scrolbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Arxa fon rəngi */
+  border-radius: 10px; /* Künclərin radiusu */
+}
+
+
+/* Scrollbar sapı hover edildikdə */
+.scrolbar::-webkit-scrollbar-thumb:hover {
+  background: transparent; /* Hover zamanı sapın rəngi */
+}

@@ -1,0 +1,172 @@
+{
+    "categories": [
+      {
+        "category": "Espresso Series",
+        "products": [
+          {
+            "name": "Classic Espresso",
+            "price": 3.50,
+            "image": "https://images.unsplash.com/photo-1519046904884-53103b34b206",
+            "rating": 4.8,
+            "description": "Traditional Italian-style espresso with a rich crema."
+          },
+          {
+            "name": "Double Shot Espresso",
+            "price": 4.50,
+            "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
+            "rating": 4.9,
+            "description": "A stronger and bolder espresso for coffee lovers."
+          },
+          {
+            "name": "Ristretto",
+            "price": 3.80,
+            "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772",
+            "rating": 4.7,
+            "description": "A shorter, more concentrated espresso shot."
+          },
+          {
+            "name": "Cuban Espresso",
+            "price": 4.20,
+            "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+            "rating": 4.6,
+            "description": "Sweetened espresso with a strong, bold taste."
+          },
+          {
+            "name": "Espresso Macchiato",
+            "price": 4.00,
+            "image": "https://images.unsplash.com/photo-1572449043416-55f4685c9bbf",
+            "rating": 4.8,
+            "description": "A shot of espresso with a dollop of frothy milk."
+          },
+          {
+            "name": "Espresso Con Panna",
+            "price": 4.20,
+            "image": "https://images.unsplash.com/photo-1523942839745-7848a6c44912",
+            "rating": 4.5,
+            "description": "Espresso topped with a layer of whipped cream."
+          },
+          {
+            "name": "Iced Espresso",
+            "price": 4.30,
+            "image": "https://images.unsplash.com/photo-1582738410632-08b06f14736d",
+            "rating": 4.7,
+            "description": "Chilled espresso served over ice."
+          },
+          {
+            "name": "Cortado",
+            "price": 4.10,
+            "image": "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907",
+            "rating": 4.9,
+            "description": "Espresso mixed with equal parts steamed milk."
+          },
+          {
+            "name": "Red Eye",
+            "price": 4.80,
+            "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187",
+            "rating": 4.7,
+            "description": "Espresso shot mixed with brewed coffee."
+          },
+          {
+            "name": "Affogato",
+            "price": 5.00,
+            "image": "https://images.unsplash.com/photo-1556767576-689b1d9ef6a7",
+            "rating": 4.8,
+            "description": "Espresso poured over vanilla ice cream."
+          }
+        ]
+      },
+      {
+        "category": "Latte Creations",
+        "products": [
+          {
+            "name": "Classic Latte",
+            "price": 5.00,
+            "image": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf",
+            "rating": 4.9,
+            "description": "Rich espresso mixed with steamed milk and foam."
+          },
+          {
+            "name": "Vanilla Latte",
+            "price": 5.50,
+            "image": "https://images.unsplash.com/photo-1572441710559-6949c1e45d6c",
+            "rating": 4.8,
+            "description": "Espresso and steamed milk infused with vanilla syrup."
+          },
+          {
+            "name": "Caramel Latte",
+            "price": 5.80,
+            "image": "https://images.unsplash.com/photo-1562048217-6c1652aedc79",
+            "rating": 4.7,
+            "description": "Smooth caramel blended with espresso and milk."
+          },
+          {
+            "name": "Hazelnut Latte",
+            "price": 5.70,
+            "image": "https://images.unsplash.com/photo-1565608810298-6944d7935eb4",
+            "rating": 4.6,
+            "description": "Nutty hazelnut flavor added to creamy latte."
+          },
+          {
+            "name": "Pumpkin Spice Latte",
+            "price": 6.00,
+            "image": "https://images.unsplash.com/photo-1588483977150-9c212ffcde3d",
+            "rating": 4.9,
+            "description": "Seasonal pumpkin spice with espresso and milk."
+          }
+        ]
+      },
+      {
+        "category": "Mocha & Chocolate",
+        "products": [
+          {
+            "name": "Classic Mocha",
+            "price": 5.50,
+            "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72",
+            "rating": 4.8,
+            "description": "Espresso blended with chocolate and steamed milk."
+          },
+          {
+            "name": "White Chocolate Mocha",
+            "price": 6.00,
+            "image": "https://images.unsplash.com/photo-1571707175548-3a2b6d1d6eb6",
+            "rating": 4.7,
+            "description": "Rich white chocolate flavor in a classic mocha."
+          }
+        ]
+      },
+      {
+        "category": "Signature Blends",
+        "products": [
+          {
+            "name": "House Blend",
+            "price": 4.50,
+            "image": "https://images.unsplash.com/photo-1518689000812-44e7e60f9ee9",
+            "rating": 4.7,
+            "description": "Smooth and balanced blend of premium beans."
+          },
+          {
+            "name": "French Roast",
+            "price": 4.70,
+            "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d",
+            "rating": 4.6,
+            "description": "Bold, dark roast with a smoky flavor."
+          },
+          {
+            "name": "Breakfast Blend",
+            "price": 4.60,
+            "image": "https://images.unsplash.com/photo-1549204821-3d8a48f7c9cf",
+            "rating": 4.8,
+            "description": "Bright and smooth, perfect for mornings."
+          },
+          {
+            "name": "Italian Roast",
+            "price": 4.80,
+            "image": "https://images.unsplash.com/photo-1533667586627-9b33c27412a1",
+            "rating": 4.7,
+            "description": "Robust flavor with caramelized sweetness."
+          }
+        ]
+      }
+    ]
+  }
+  
