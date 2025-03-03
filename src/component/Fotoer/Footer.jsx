@@ -41,9 +41,9 @@ function Footer() {
                 <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
               </li>
               <li className="relative group">
-                <a href="#" className="transition-colors duration-300 group-hover:text-[#db9457]">
+                <Link to='/karyera' className="transition-colors duration-300 group-hover:text-[#db9457]">
                   Karyer
-                </a>
+                </Link>
                 <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
               </li>
               <li className="relative group">

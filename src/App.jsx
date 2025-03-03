@@ -17,6 +17,7 @@ import Order from './component/checkout/Order'
 import Qrmenu from './qrcode/Qrmenu'
 import Qrmodal from './component/Main/Qrmodal'
 import Tracing from './component/Main/Tracing'
+import Career from './component/Main/Career'
 
 
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="Forgetpassword" element={<Forgetpassword />} />
           <Route path="order" element={<Order />} />
           <Route path="tracing" element={<Tracing />} />
+          <Route path="karyera" element={<Career />} />
          
         </Route>
       </Routes>
