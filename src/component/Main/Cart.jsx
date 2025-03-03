@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BASKET } from "../../Context/BasketContext";
 
 function Cart({ opensebet, setOpensebet }) {
-  const { sebet } = useContext(BASKET);
+  const { sebet,removeFromBasket  } = useContext(BASKET);
 
   // ✅ Eyni məhsulları toplayırıq (id əsasən qruplaşdırırıq)
   const groupedBasket = sebet.reduce((acc, item) => {
@@ -63,9 +63,21 @@ function Cart({ opensebet, setOpensebet }) {
           </div>
         </div>
         <div className="ml-auto flex flex-col items-end">
-          <h4 className="text-base font-bold text-gray-800">
-            {item.discount > 0 ? item.finalPrice.toFixed(2) : item.price.toFixed(2)} ₼
-          </h4>
+          <div className="flex items-center">
+            <h4 className="text-base font-bold text-gray-800">
+              {item.discount > 0 ? item.finalPrice.toFixed(2) : item.price.toFixed(2)} ₼
+            </h4>
+            <svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  className="w-5 h-5 cursor-pointer fill-gray-500 hover:fill-red-500"
+  onClick={() => removeFromBasket(item.id)}
+  viewBox="0 0 24 24"
+>
+  <path d="M3 6h18v2H3V6m2 3v11c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V9h-2v11H7V9H5Z"/>
+  <path d="M8 4.5C8 4.22 8.22 4 8.5 4h7c.28 0 .5.22.5.5V6H8V4.5Z"/>
+  <path d="M10 10h1v8h-1v-8zm3 0h1v8h-1v-8z"/>
+</svg>
+          </div>
           <p className="text-xs text-gray-500">({item.quantity} ədəd)</p>
         </div>
       </div>

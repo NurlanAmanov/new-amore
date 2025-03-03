@@ -119,7 +119,24 @@ function BasketContext({ children }) {
       return newSebet;
     });
   }
-
+// BasketContext.js faylında əlavə ediləcək funksiya
+function removeFromBasket(id) {
+  setSebet((prevSebet) => {
+    const newSebet = prevSebet.filter((item) => item.id !== id);
+    
+    // Cookie-ni yeniləyirik
+    if (newSebet.length > 0) {
+      cook.set("sebet", newSebet, {
+        path: "/",
+        expires: new Date(Date.now() + 86400 * 1000),
+      });
+    } else {
+      cook.remove("sebet", { path: "/" });
+    }
+    
+    return newSebet;
+  });
+}
   // 🔹 **Səbəti təmizləmək**
   function clearBasket() {
     setSebet([]);
@@ -127,7 +144,7 @@ function BasketContext({ children }) {
   }
 
   return (
-    <BASKET.Provider value={{ sebet, bassketadd, sendToOrderAPI, clearBasket, orderMessage, loading }}>
+    <BASKET.Provider value={{ sebet, bassketadd, sendToOrderAPI, clearBasket, orderMessage, loading,removeFromBasket  }}>
       {children}
     </BASKET.Provider>
   );
