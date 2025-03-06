@@ -13,6 +13,7 @@ function Datacontext({ children }) {
     const [silder, setSilder] = useState([]);
     const [socailmedia, setMedia] = useState([]);
 
+
     useEffect(() => {
         GetCategory().then(res => setCategory(res));
         GetProduct().then(res => setMehsul(res));
@@ -21,6 +22,7 @@ function Datacontext({ children }) {
         GetLogo().then(res=>setLogo(res))
         GetSocialMedia().then(res=>setMedia(res))
         Getsilder().then(res=>setSilder(res))
+      
     }, []);
 
     // ID ilə məhsulu gətirmək üçün funksiya

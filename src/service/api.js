@@ -56,4 +56,5 @@ async function GetAuth() {
 
 
 
+
 export { GetCategory, GetProduct, Getbanner,GetSocialMedia,GetLogo,Getslogan,Getsilder,GetLocation,GetProductById,GetAuth }

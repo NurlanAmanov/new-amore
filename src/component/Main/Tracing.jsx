@@ -106,14 +106,7 @@ function Tracing() {
       <h1 className="text-3xl font-bold mb-6">Sifarişinizin İzləmə Səhifəsi</h1>
       
       <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-lg">
-            Sifariş ID: <span className="font-bold">{orderId}</span>
-          </p>
-          <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-            {stages[currentStage].label}
-          </div>
-        </div>
+       
         
         <div className="w-full bg-gray-200 rounded-full h-2.5 mb-6 overflow-hidden">
           <div 
