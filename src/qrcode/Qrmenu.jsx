@@ -1,44 +1,62 @@
 import React, { useState, useContext } from 'react';
 import { DATA } from '../Context/Datacontext';
 import axios from 'axios';
+import { Link } from 'react-router-dom';  // Link komponentini import et
+import { QRCodeCanvas } from 'qrcode.react';
 
 function Qrmenu() {
   const { category, mehsul } = useContext(DATA);
   const API_BASE_URL = 'https://finalprojectt-001-site1.jtempurl.com';
-  
+
   // Modalın açılıb-bağlanmasını idarə edən state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null); // Seçilmiş məhsul
   const [loading, setLoading] = useState(false);
   const [orderStatus, setOrderStatus] = useState({ success: false, message: '' });
-  
+  const [tableId, setTableId] = useState(null); // Yaradılan masa ID-sini saxlayır
+
+  // Masa yaratma funksiyası
+  const createTable = async () => {
+    try {
+      // Masa nömrəsini təsadüfi olaraq seçirik (1-6)
+      const tableName = Math.floor(Math.random() * 6) + 1;
+
+      const response = await axios.post(
+        `${API_BASE_URL}/api/Table`, 
+        { Name: tableName.toString() },  // Masa nömrəsi burada
+        {
+          headers: {
+            'Authorization': 'Bearer YOUR_TOKEN',  // Token ilə autentifikasiya
+            'Content-Type': 'multipart/form-data',
+          }
+        }
+      );
+
+      if (response.data && response.data.id) {
+        // Masa yaradılıb, ID alındı
+        console.log("Masa yaradıldı, ID:", response.data.id);
+        setTableId(response.data.id); // Masa ID-ni saxlayırıq
+      }
+    } catch (error) {
+      console.error("Masa yaratmaqda xəta:", error);
+    }
+  };
+
   // Modal açılması
   const openModal = async (product) => {
     try {
-      // Məhsul məlumatlarını API-dən ətraflı alaraq yeniləyirik
       setLoading(true);
-      const response = await axios.get(`${API_BASE_URL}/api/Product/${product.id}`);
-      
-      if (response.data) {
-        // API-dən alınan məlumatlarla əvvəlki məlumatları birləşdiririk
-        setSelectedProduct({ ...product, ...response.data });
-        console.log("Seçilmiş məhsul:", { ...product, ...response.data });
-      } else {
-        setSelectedProduct(product);
-        console.log("Alternativ məhsul:", product);
-      }
-      
+      // Yeni masa yaratmaq üçün ID alınır
+      await createTable();  // Masa yaratmaq üçün funksiyanı çağırırıq
+      setSelectedProduct(product);
       setIsModalOpen(true);
     } catch (error) {
       console.error('Məhsul məlumatları yüklənmədi:', error);
-      // Xəta olsa da mövcud məlumatları göstəririk
-      setSelectedProduct(product);
-      setIsModalOpen(true);
     } finally {
       setLoading(false);
     }
   };
-  
+
   // Modal bağlanması
   const closeModal = () => {
     setIsModalOpen(false);
@@ -54,10 +72,10 @@ function Qrmenu() {
       });
       return;
     }
-    
+
     // Məhsul ID-ni əldə etməyə cəhd edirik
     const productId = String(selectedProduct.id);
-    
+
     if (!productId) {
       console.error('Məhsul ID tapılmadı:', selectedProduct);
       setOrderStatus({
@@ -66,22 +84,22 @@ function Qrmenu() {
       });
       return;
     }
-    
+
     console.log('Sifariş göndərilir, productId:', productId);
-    
+
     try {
       setLoading(true);
-      
+
       // FormData yaradırıq
       const formData = new FormData();
       formData.append('ProductIds', productId); // Nəzərə alın ki "ProductIds" istifadə edilir, "ProductId" yox
-      formData.append('TableId', 'abc5204f-8742-4927-b33b-dc8e52f9e8a1');
-      
+      formData.append('TableId', tableId);  // Yaradılan Table ID burada istifadə edilir
+
       console.log('Göndərilən formData:', {
         ProductIds: productId,
-        TableId: 'abc5204f-8742-4927-b33b-dc8e52f9e8a1'
+        TableId: tableId
       });
-      
+
       const response = await axios.post(
         `${API_BASE_URL}/api/Order/create-qr-order`,
         formData,
@@ -92,24 +110,24 @@ function Qrmenu() {
           },
         }
       );
-      
+
       console.log('API cavabı:', response.data);
-      
+
       // Uğurlu cavab alındıqda
       setOrderStatus({
         success: true,
         message: 'Sifariş uğurla verildi!'
       });
-      
+
       // 2 saniyə sonra modal bağlanır
       setTimeout(() => {
         closeModal();
       }, 2000);
-      
+
     } catch (error) {
       console.error('Sifariş göndərmək mümkün olmadı:', error);
       console.error('Xəta detalları:', error.response?.data);
-      
+
       setOrderStatus({
         success: false,
         message: 'Sifariş göndərmək mümkün olmadı. Xəta: ' + (error.response?.data?.message || error.message || 'Bilinməyən xəta')
@@ -118,7 +136,7 @@ function Qrmenu() {
       setLoading(false);
     }
   };
-  
+
   return (
     <>
       <div className="qrmenu-container block sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden">
@@ -172,6 +190,11 @@ function Qrmenu() {
                     alt={item.title}
                     className="w-[100%] h-[100px] object-cover rounded-md"
                   />
+                </div>
+                {/* QR kodunu canvas formatında göstəririk */}
+                <div className="qr-code">
+                  <QRCodeCanvas value={`http://localhost:5173/qrmenu/${item.id}`} size={100} renderAs="canvas" />
+                  <Link to={`/qrmenu/${item.id}`}>Masa {item.title}</Link>
                 </div>
               </div>
             ))}
