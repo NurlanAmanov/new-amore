@@ -32,7 +32,7 @@ export const loginUser = async (formData) => {
         console.log("📦 Göndərilən FormData:", Object.fromEntries(formDataToSend.entries()));
 
         // API-yə POST sorğusu göndəririk
-        const response = await apiClient.post('/Auth/Login', formDataToSend, {
+        const response = await apiClient.post('/Auth/login', formDataToSend, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },

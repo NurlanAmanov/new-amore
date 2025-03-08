@@ -139,7 +139,7 @@ function CoffeeSuggestion() {
                 <div 
                   onClick={() => navigateToProduct(item.productId)} 
                   key={item.productId} 
-                  className="border-b py-3 flex gap-4 cursor-pointer hover:bg-zinc-100 duration-300"
+                  className="border-b py-3 flex gap-4 cursor-pointer hover:bg-zinc-100 duration-300J"
                 >
                   <img
                     className="rounded w-20 h-20 object-cover"

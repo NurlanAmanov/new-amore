@@ -67,7 +67,7 @@ function AccountInfo() {
       const imgUrl = uploadResponse.data.imgUrl;
 
       await axios.post(
-        "https://finalprojectt-001-site1.jtempurl.com/api/Auth/Update-Own-Photo-In-Cabinet",
+        "https://finalprojectt-001-site1.jtempurl.com/api/Auth/update-profile",
         {
           id: userInfo.id,
           imgUrl: imgUrl,

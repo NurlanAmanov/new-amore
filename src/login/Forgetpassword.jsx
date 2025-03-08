@@ -15,7 +15,7 @@ function Forgetpassword() {
         formData.append('Email', email);
     
         try {
-            const response = await fetch('https://finalprojectt-001-site1.jtempurl.com/api/Auth/ForgotPassword', {
+            const response = await fetch('https://finalprojectt-001-site1.jtempurl.com/api/Auth/forgot-password', {
                 method: 'POST',
                 body: formData
             });

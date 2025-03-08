@@ -5,7 +5,7 @@ const BASE_URL = "https://finalprojectt-001-site1.jtempurl.com/api/Auth";
 export const registerUser = async (formData) => {
     try {
         const response = await axios.post(
-            `${BASE_URL}/Register`,
+            `${BASE_URL}/register`,
             {
                 Name: formData.name,
                 Surname: formData.lname,
