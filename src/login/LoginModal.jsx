@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/Authlogin";
 
-function LoginPage({ toggleProfile }) {
+function LoginModal() {
   const { login, user } = useAuth();
   const [formData, setFormData] = useState({
     UserNameOrEmail: "",
@@ -16,9 +16,9 @@ function LoginPage({ toggleProfile }) {
   useEffect(() => {
     if (user) {
       navigate("/");
-      toggleProfile();
+   
     }
-  }, [user, navigate, toggleProfile]);
+  }, [user, navigate,]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,7 +33,7 @@ function LoginPage({ toggleProfile }) {
         setError(response.error);
       } else if (response.token) {
         navigate("/dashboard"); // İstifadəçi daxil olduqda yönləndir
-        toggleProfile(); // Modalı bağlayın
+     
       }
     } catch (err) {
       setError("Giriş zamanı xəta baş verdi! Yanlış e-mail və ya şifrə.");
@@ -43,7 +43,7 @@ function LoginPage({ toggleProfile }) {
   return (
     <div id="modal-backdrop" className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
       <div className="bg-white p-8 rounded-lg w-11/12 md:w-1/3 shadow-2xl relative">
-        <MdClose onClick={toggleProfile} className="text-gray-800 text-2xl cursor-pointer absolute top-3 right-3" />
+     
         <h3 className="text-xl font-semibold text-center mb-4">Daxil olun</h3>
         <form className="space-y-4" onSubmit={handleLogin}>
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
@@ -77,7 +77,7 @@ function LoginPage({ toggleProfile }) {
           <div className="text-center">
             <Link
               to="/qeydiyyat"
-              onClick={toggleProfile} // Yalnız bu linkə klikləndikdə modalı bağla
+              
               className="text-blue-600 hover:underline"
             >
               Qeydiyyatdan keçin
@@ -85,7 +85,7 @@ function LoginPage({ toggleProfile }) {
             <span className="mx-2">|</span>
             <Link
               to="/Forgetpassword"
-              onClick={toggleProfile} // Yalnız bu linkə klikləndikdə modalı bağla
+             
               className="text-blue-600 hover:underline"
             >
               Şifrəni unutmusunuz?
@@ -97,4 +97,4 @@ function LoginPage({ toggleProfile }) {
   );
 }
 
-export default LoginPage;
+export default LoginModal;

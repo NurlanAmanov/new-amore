@@ -1,17 +1,20 @@
 import React, { createContext, useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const BASKET = createContext(null);
 
 function BasketContext({ children }) {
   const cook = new Cookies();
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const [sebet, setSebet] = useState([]);
   const [userId, setUserId] = useState(null);
   const [orderMessage, setOrderMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(null); // Add state for alert message
 
   // 🔹 **İstifadəçi ID-ni `Auth/profile` API-dən çəkmək və yadda saxlamaq**
   useEffect(() => {
@@ -98,6 +101,19 @@ function BasketContext({ children }) {
 
   // 🔹 **Səbətə məhsul əlavə etmək**
   function bassketadd(title, about, id, imgUrl, price, discount, finalPrice, selectedSize, quantity) {
+    if (!token) {
+      // Set the alert message
+      setAlertMessage("Səbətə məhsul əlavə etmək üçün əvvəlcə daxil olun!");
+      
+      // Set a timeout to redirect after 3 seconds
+      setTimeout(() => {
+        setAlertMessage(null); // Clear the alert message
+        navigate("/login"); // Navigate to login page after 3 seconds
+      }, 3000);
+      
+      return;
+    }
+
     setSebet((prevSebet) => {
       let newSebet = [...prevSebet];
 
@@ -119,24 +135,26 @@ function BasketContext({ children }) {
       return newSebet;
     });
   }
-// BasketContext.js faylında əlavə ediləcək funksiya
-function removeFromBasket(id) {
-  setSebet((prevSebet) => {
-    const newSebet = prevSebet.filter((item) => item.id !== id);
-    
-    // Cookie-ni yeniləyirik
-    if (newSebet.length > 0) {
-      cook.set("sebet", newSebet, {
-        path: "/",
-        expires: new Date(Date.now() + 86400 * 1000),
-      });
-    } else {
-      cook.remove("sebet", { path: "/" });
-    }
-    
-    return newSebet;
-  });
-}
+
+  // BasketContext.js faylında əlavə ediləcək funksiya
+  function removeFromBasket(id) {
+    setSebet((prevSebet) => {
+      const newSebet = prevSebet.filter((item) => item.id !== id);
+      
+      // Cookie-ni yeniləyirik
+      if (newSebet.length > 0) {
+        cook.set("sebet", newSebet, {
+          path: "/",
+          expires: new Date(Date.now() + 86400 * 1000),
+        });
+      } else {
+        cook.remove("sebet", { path: "/" });
+      }
+      
+      return newSebet;
+    });
+  }
+
   // 🔹 **Səbəti təmizləmək**
   function clearBasket() {
     setSebet([]);
@@ -144,7 +162,12 @@ function removeFromBasket(id) {
   }
 
   return (
-    <BASKET.Provider value={{ sebet, bassketadd, sendToOrderAPI, clearBasket, orderMessage, loading,removeFromBasket  }}>
+    <BASKET.Provider value={{ sebet, bassketadd, sendToOrderAPI, clearBasket, orderMessage, loading, removeFromBasket, alertMessage }}>
+      {alertMessage && (
+        <div className="p-4 absolute top-[40%] left-[40%] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+          <span className="font-medium">Əziz istifadəçi</span> {alertMessage}
+        </div>
+      )}
       {children}
     </BASKET.Provider>
   );

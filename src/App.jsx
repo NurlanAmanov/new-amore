@@ -19,6 +19,8 @@ import Qrmodal from './component/Main/Qrmodal'
 import Tracing from './component/Main/Tracing'
 import Career from './component/Main/Career'
 
+import LoginModal from './login/LoginModal'
+
 
 
 
@@ -50,6 +52,7 @@ function App() {
           <Route path="order" element={<Order />} />
           <Route path="tracing" element={<Tracing />} />
           <Route path="karyera" element={<Career />} />
+          <Route path="login" element={<LoginModal />} />
          
         </Route>
       </Routes>
