@@ -4,6 +4,7 @@ import axios from "axios";
 import { IoStarSharp, IoStarOutline } from "react-icons/io5"; // Ulduz ikonları
 import { CiHeart } from "react-icons/ci";
 import { BASKET } from "../../Context/BasketContext";
+import { LIKESDATA } from "../../Context/LikeContext"; // Like contextini import edirik
 import Coment from "../Main/Coment";
 
 const ProductDetail = () => {
@@ -12,6 +13,7 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState("Orta");
   const [quantity, setQuantity] = useState(1);
   const { bassketadd } = useContext(BASKET);
+  const { toggleLike } = useContext(LIKESDATA); // like toggle funksiyasını kontekstdən götürürük
   const [commentsCount, setCommentsCount] = useState(0); // Şərhlərin sayını saxlamaq üçün state
   const [averageRating, setAverageRating] = useState(0);  // Orta reytinq
   const [isLiked, setIsLiked] = useState(false); // Məhsulun bəyənilib-bəyənilmədiyini izləmək üçün
@@ -65,23 +67,20 @@ const ProductDetail = () => {
 
     return stars;
   };
-
+  
   const handleLikeClick = (e) => {
-    e.stopPropagation(); // Kartın yönləndirməsini əngəlləyir
-
-    if (product) {
-      const productDetails = {
-        id: product.id,
-        title: product.title,
-        about: product.about,
-        imgUrl: `https://finalprojectt-001-site1.jtempurl.com${product.imgUrl}`,
-        description: product.description,
-        price: product.price,
-        finalPrice: product.finalPrice
-      };
-
-      setIsLiked(!isLiked); // Məhsulun bəyənilmə vəziyyətini dəyişirik
-    }
+    // Düzgün obyekt formatında like göndəririk
+    const likedProduct = {
+      id: product.id,
+      title: product.title,
+      about: product.about,
+      imgUrl: `https://finalprojectt-001-site1.jtempurl.com${product.imgUrl}`,
+      description: product.description,
+      price: product.price,
+      finalPrice: product.finalPrice
+    };
+    toggleLike(likedProduct); // Kontekstdəki like funksiyasını çağırırıq
+    setIsLiked(!isLiked); // Lokal like vəziyyətini yeniləyirik
   };
 
   if (!product) {
@@ -100,7 +99,9 @@ const ProductDetail = () => {
         </div>
         <div className="xl:w-2/3 w-[95%] mx-auto">
           {product.discount > 0 ? (
-            <span className="bg-red-500 text-white text-[15px] font-playfair px-4 py-1">{product.discount} % </span>
+            <span className="bg-red-500 text-white text-[15px] font-playfair px-4 py-1">
+              {product.discount} %
+            </span>
           ) : ''}
           <h1 className="text-5xl font-light font-playfair mt-[10px]">{product.title}</h1>
           <div className="flex items-center mt-6 mb-3">
@@ -129,7 +130,9 @@ const ProductDetail = () => {
                 <button
                   key={variant.variantId}
                   onClick={() => setSelectedSize(variant.variant.name)}
-                  className={`p-3 px-10 py-2 border text-sm font-light text-[20px] font-poppins ${selectedSize === variant.variant.name ? 'bg-[#DB9457] text-white' : 'bg-white text-black border-gray-400'}`}
+                  className={`p-3 px-10 py-2 border text-sm font-light text-[20px] font-poppins ${
+                    selectedSize === variant.variant.name ? 'bg-[#DB9457] text-white' : 'bg-white text-black border-gray-400'
+                  }`}
                 >
                   {variant.variant.name}
                 </button>
@@ -157,9 +160,14 @@ const ProductDetail = () => {
               Səbətə at
             </button>
 
-            <button onClick={handleLikeClick} className="text-3xl border py-1 px-2 hover:bg-[#DB9457] hover:text-white transition-all duration-600">
-              <CiHeart className={`text-black ${isLiked ? 'text-red-500' : ''}`} />
-            </button>
+            <button 
+  onClick={handleLikeClick} 
+  className="flex items-center justify-center w-12 h-12 border rounded-full shadow-md transition-all duration-300 transform hover:scale-110 hover:bg-[#DB9457] hover:text-white"
+  aria-label="Like"
+>
+  <CiHeart className={`text-2xl ${isLiked ? 'text-red-500' : 'text-black'}`} />
+</button>
+
           </div>
           <div className="text-gray-500 text-sm mt-12 font-inter font-light text-[14px] tracking-wider">
             Category: <span className="text-red-500">{product.categoryName}</span>
