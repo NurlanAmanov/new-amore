@@ -240,13 +240,7 @@ function Header() {
                         </Link>
 
                         {/* Order Button in Mobile Menu */}
-                        <Link
-                            to="Allcategory"
-                            className="mt-8 bg-white text-[#7a461f] py-3 px-6 rounded-[12px] font-medium text-center transition-all hover:bg-opacity-90 hover:shadow-lg"
-                            onClick={toggleMenu}
-                        >
-                            Sifariş et
-                        </Link>
+                   
                     </div>
 
                     {/* User Info Section */}
