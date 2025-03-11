@@ -130,7 +130,7 @@ function Checkout() {
 
       console.log("Göndərilən AppUserId:", currentUser.id);
 
-      const response = await fetch("https://finalprojectt-001-site1.jtempurl.com/api/own-shipping-infos", {
+      const response = await fetch("https://finalprojectt-001-site1.jtempurl.com/api/ShippingInfo", {
         method: "POST",
         headers: {
           "accept": "*/*",

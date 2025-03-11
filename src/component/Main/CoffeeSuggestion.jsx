@@ -125,9 +125,12 @@ function CoffeeSuggestion() {
 
         {showModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded p-6 w-full max-w-lg overflow-y-auto max-h-screen">
+            <div className="bg-[#FBF6F2] rounded-[10px] p-6 w-full max-w-2xl overflow-y-auto max-h-screen">
+              <div onClick={() => setShowModal(false)} className="close text-[#66291B] text-[25px] flex justify-end items-center">
+                x
+              </div>
               <div className="flex justify-between items-center">
-                <h2 className="font-bold text-xl mb-4">{zodiac} Bürcünə Uyğun Kofelər</h2>
+                <h2 className="font-bold text-xl mb-4">{zodiac} bürcünü seçdiniz!Sizə uyğun gördüyümüz təkliflər</h2>
 
               </div>
 
@@ -137,7 +140,7 @@ function CoffeeSuggestion() {
 
               {zodiacProducts.map((item) => (
                 <div 
-                  onClick={() => navigateToProduct(item.productId)} 
+               
                   key={item.productId} 
                   className="border-b py-3 flex gap-4 cursor-pointer hover:bg-zinc-100 duration-300J"
                 >
@@ -150,10 +153,12 @@ function CoffeeSuggestion() {
                       e.target.alt = 'Şəkil tapılmadı';
                     }}
                   />
-                  <div>
-                    <h3 className="font-semibold">{item.product.title}</h3>
-                    <p>{item.product.description}</p>
-
+                  <div className='flex items-center justify-between w-full'>
+                 <div className="top-text">
+                 <h3 className="font-bold text-[#66291B]">{item.product.title}</h3>
+                 <p className='text-[#C86E13] font-bold text-[24px]'>{item.product.price}₼</p>
+                 </div>
+                    <p    onClick={() => navigateToProduct(item.productId)}  className='text-[#66291B]'>Ətraflı</p>
                   </div>
                 </div>
               ))}

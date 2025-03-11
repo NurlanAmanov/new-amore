@@ -57,10 +57,17 @@ function Header() {
         <>
             {/* Top Banner */}
             {banner && banner.map((item, i) => (
-                <div key={i} className="flex flex-row items-center justify-center bg-gradient-to-r from-[#1a1a2e] to-[#242434] text-white px-6 h-[40px] py-2 gap-4 max-sm:gap-2 text-center">
-                    <img src={spotifyIcon} className="w-[25px] h-[25px] object-contain max-sm:w-[20px] max-sm:h-[20px]" alt="Spotify icon" />
-                    <p className="text-base font-light max-sm:text-sm max-sm:px-4">{item.description}</p>
+                <>
+                
+                <div key={i} className="flex flex-row items-center justify-center bg-gradient-to-r from-[#1a1a2e] to-[#242434] text-white px-6 h-[40px] py-2  max-sm:gap-2 text-center">
+               <div className="icon"> <img src={spotifyIcon} className="w-[25px] h-[25px] object-contain max-sm:w-[20px] max-sm:h-[20px]" alt="Spotify icon" /></div>
+                 <div className="text lg:w-[50%] flex items-center justify-center mx-auto">
+                 <p className="text-[14px] font-light max-sm:text-[12px] max-sm:px-4">{item.description}</p>
+                 </div>
                 </div>
+
+                </>
+
             ))}
 
             {/* Main Header */}
@@ -76,7 +83,7 @@ function Header() {
                                         key={index}
                                         src={`https://finalprojectt-001-site1.jtempurl.com${item.imgUrl}`}
                                         alt="Logo"
-                                        className={`h-[60px] w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-[50px]' : 'h-[60px]'}`}
+                                        className={`h-[90px] w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-[50px]' : 'h-[60px]'}`}
                                     />
                                 ))}
                             </Link>

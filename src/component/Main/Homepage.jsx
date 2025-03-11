@@ -32,21 +32,21 @@ function Homepage() {
 <section id='niyebiz' className='py-[60px]'>
 <div className='flex items-center justify-center gap-4'> <hr className='border-[#CFA172] w-4  ' /> <h4 className='text-[24px] text-center text-[#CFA172]'>Niyə bizi seçməlisiz?</h4>   <hr className='border-[#CFA172] w-4  ' /> </div>
 
-<div className="content p-4 flex items-center justify-center flex-wrap gap-12">
-  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[450px]">
+<div className="content p-6 flex items-center justify-center flex-wrap gap-12">
+  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[350px]">
     <img src={musderi} alt="koffe" className='w-[70px] object-cover' />
     <p className='text-[18px] text-[#4E5562] '>Müştərilərimiz üçün sadəcə qəhvə yox, eyni zamanda isti və rahat mühit yaradırıq. Rahat interyerimiz və mehriban heyətimiz ilə özünüzü evdəki kimi hiss edəcəksiniz.</p>
   </div>
-  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[450px]">
+  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[350px]">
     <img src={barista} alt="koffe" className='w-[70px] object-cover' />
     <p className='text-[18px] text-[#4E5562] '>Baristalarımız hər fincanı sevgi və diqqətlə hazırlayır. Onların təcrübəsi və ustalığı sayəsində sizə ən yaxşı qəhvə təcrübəsini təqdim edirik.</p>
   </div>
 
-  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[450px]">
+  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[350px]">
     <img src={cofe} alt="koffe" className='w-[70px] object-cover' />
     <p className='text-[18px] text-[#4E5562] '>Müştərilərimiz üçün sadəcə qəhvə yox, eyni zamanda isti və rahat mühit yaradırıq. Rahat interyerimiz və mehriban heyətimiz ilə özünüzü evdəki kimi hiss edəcəksiniz.</p>
   </div>
-  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[450px]">
+  <div className="card flex items-start justify-center w-full flex-col lg:flex-row gap-4 lg:w-[350px]">
     <img src={menu} alt="koffe" className='w-[70px] object-cover' />
     <p className='text-[18px] text-[#4E5562] '>Klassik qəhvələrdən tutmuş, xüsusi reseptlərə əsaslanan içkilərə qədər geniş seçimlərimiz var. Hər zövqə uyğun bir fincan tapacağınıza əminik!</p>
   </div>

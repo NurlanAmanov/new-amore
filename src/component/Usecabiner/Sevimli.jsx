@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { LIKESDATA } from '../../Context/LikeContext';
-
+import { useNavigate } from 'react-router-dom';
 function Sevimli() {
   const [likedItems, setLikedItems] = useState([]);
-  
+    const navigate = useNavigate(); 
   // Sevimli məhsulları çəkir
   const fetchFavoriteItems = async () => {
     try {
@@ -58,6 +58,9 @@ function Sevimli() {
     } catch (error) {
       console.error('Favorite toggle xətası:', error);
     }
+  };
+  const navigateToProduct = (id) => {
+    navigate(`/ProductDetail/${id}`);
   };
 
   return (
