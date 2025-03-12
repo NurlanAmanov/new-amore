@@ -166,7 +166,7 @@ function Header() {
                                 to="Allcategory"
                                 className={`rounded-full font-medium flex items-center justify-center transition-all duration-300 ${isScrolled
                                         ? 'bg-[#de9f69] text-white px-6 py-2 hover:bg-[#c48951]'
-                                        : 'border-2 border-[#de9f69] text-[#de9f69] px-5 py-1.5 hover:bg-[#de9f69] hover:text-white'
+                                        : 'border-2 border-[#ffff] text-[#de9f69] px-5 py-1.5 hover:bg-[#de9f69] hover:text-white'
                                     }`}
                             >
                                 Sifariş et

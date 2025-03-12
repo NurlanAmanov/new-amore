@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IoStar, IoStarOutline, IoTrash } from "react-icons/io5"; // Ulduz və silmə ikonları
+import { FaDeleteLeft } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
 
 function Coment({ productId }) {
   const [reviews, setReviews] = useState([]);
@@ -239,7 +241,7 @@ function Coment({ productId }) {
                     className="text-red-500 hover:text-red-700 ml-2"
                     title="Şərhi sil"
                   >
-                    <IoStarOutline size={18} />
+                    <MdDelete size={18} />
                   </button>
                 )}
               </div>
