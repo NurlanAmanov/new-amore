@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import  { useContext, useEffect, useState } from 'react';
 import Cart from '../Main/Cart';
 import spotifyIcon from '../../assets/icon/spotify.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { DATA } from '../../Context/Datacontext';
 import Loginpage from '../../login/Loginpage';
 import { BASKET } from '../../Context/BasketContext';
 import { useAuth } from '../../Context/Authlogin';
+import SpotifyPlayer from './ui/SpotifyPlayer/SpotifyPlayer';
 
 function Header() {
     const { user } = useAuth();
@@ -17,6 +18,7 @@ function Header() {
     const [opensebet, setOpensebet] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isSpotifyModalOpened, toggleSpotifyModal] = useState(false)
 
     const { sebet } = useContext(BASKET);
     const navigate = useNavigate();
@@ -55,12 +57,34 @@ function Header() {
 
     return (
         <>
+            <div
+            className={`relative ${isSpotifyModalOpened ? 'z-50 opacity-100' : '-z-10 opacity-0'} transition-opacity duration-500`}
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+            onClick={() => toggleSpotifyModal(false)}
+            >
+            <div
+                aria-hidden="true"
+                onClick={() => toggleSpotifyModal(false)}
+                className="fixed inset-0 bg-[#535600]/65 transition-opacity"
+            ></div>
+
+            <div
+                className="fixed inset-0 z-10 w-screen overflow-y-auto"
+                onClick={() => toggleSpotifyModal(false)}
+            >
+                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <SpotifyPlayer />
+                </div>
+            </div>
+            </div>
             {/* Top Banner */}
             {banner && banner.map((item, i) => (
                 <>
                 
                 <div key={i} className="flex flex-row items-center justify-center bg-gradient-to-r from-[#1a1a2e] to-[#242434] text-white px-6 h-[40px] py-2  max-sm:gap-2 text-center">
-               <div className="icon"> <img src={spotifyIcon} className="w-[25px] h-[25px] object-contain max-sm:w-[20px] max-sm:h-[20px]" alt="Spotify icon" /></div>
+               <button onClick={() => toggleSpotifyModal(!isSpotifyModalOpened)} className="icon outline-none border-none "> <img src={spotifyIcon} className="w-[25px] h-[25px] object-contain max-sm:w-[20px] max-sm:h-[20px]" alt="Spotify icon" /></button>
                  <div className="text lg:w-[50%] flex items-center justify-center mx-auto">
                  <p className="text-[14px] font-light max-sm:text-[12px] max-sm:px-4">{item.description}</p>
                  </div>

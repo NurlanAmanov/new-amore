@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Layout from './layout/Layout'
 import Haqqimizda from './component/Main/Haqqimizda'
@@ -15,7 +15,6 @@ import Resetpasword from './login/Resetpasword'
 import Forgetpassword from './login/Forgetpassword'
 import Order from './component/checkout/Order'
 import Qrmenu from './qrcode/Qrmenu'
-import Qrmodal from './component/Main/Qrmodal'
 import Tracing from './component/Main/Tracing'
 import Career from './component/Main/Career'
 
