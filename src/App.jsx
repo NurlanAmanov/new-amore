@@ -5,7 +5,6 @@ import Haqqimizda from './component/Main/Haqqimizda'
 import Homepage from './component/Main/Homepage'
 import Teklif from './component/Main/Teklif'
 import Product from './component/product/Product'
-import Allcategory from './component/All-category/Allcategory'
 import Checkout from './component/checkout/Checkout'
 import Registr from './login/Registr'
 import Cabinet from './component/Usecabiner/Cabinet'
@@ -19,6 +18,7 @@ import Tracing from './component/Main/Tracing'
 import Career from './component/Main/Career'
 
 import LoginModal from './login/LoginModal'
+import Allcategory from './component/Main/Allcategory'
 
 
 
@@ -45,7 +45,6 @@ function App() {
           <Route path="Check" element={<Checkout />} />
           <Route path="lokasiya" element={<Location />} />
           <Route path="/ProductDetail/:id" element={<ProductDetail />} />
-          <Route path="Allcategory" element={<Allcategory />} />
           <Route path="reset-password" element={<Resetpasword />} />
           <Route path="Forgetpassword" element={<Forgetpassword />} />
           <Route path="order" element={<Order />} />

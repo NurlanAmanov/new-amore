@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { Link } from 'react-scroll'; 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -51,13 +51,20 @@ function Slider() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
-                href="#contact" 
-                className="inline-flex items-center px-8 py-3.5 bg-[#de9f69] text-white font-medium rounded-lg transition-all hover:bg-[#c48951] hover:shadow-lg group"
-              >
-                <span>Keçid et</span>
-                <FaLongArrowAltRight className="ml-2 transform transition-transform group-hover:translate-x-1" />
-              </a>
+            <a
+  className="inline-flex items-center px-8 py-3.5 bg-[#de9f69] text-white font-medium rounded-lg transition-all hover:bg-[#c48951] hover:shadow-lg group"
+>
+  <Link 
+    to="burc" // Burada id-nin adını daxil edin
+    smooth={true} // Yavaşca keçid üçün
+    duration={1000} // 1 saniyəlik animasiya müddəti
+    offset={-70} // İstəyə bağlı olaraq, yuxarıda qalacaq boşluğu tənzimləyin
+    className="inline-flex items-center px-8 py-3.5"
+  >
+    <span>Keçid et</span>
+    <FaLongArrowAltRight className="ml-2 transform transition-transform group-hover:translate-x-1" />
+  </Link>
+</a>
               
               <a 
                 href="#discover" 

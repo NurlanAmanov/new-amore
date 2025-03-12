@@ -27,7 +27,7 @@ function Tracing() {
     { id: 'delivering', label: 'Çatdırılır', icon: '🔔', completed: false },
     { id: 'completed', label: 'Tamamlandı', icon: '✅', completed: false }
   ];
-  
+
   // Təsadüfi vaxtlar təyin etmək üçün funksiya
   const generateRandomTimes = () => {
     // Hər mərhələ üçün təsadüfi dəqiqələr (3-10 dəqiqə arası)
@@ -42,12 +42,15 @@ function Tracing() {
       completed: 10 // tamamlanmış statusu üçün kiçik bir vaxt
     };
   };
-  
 
-  
-  // Vaxtları azaltmaq və statusları dəyişmək
+  // Vaxtları yenidən təyin etmək və başlatmaq
   useEffect(() => {
-    if (!isInitialized) return;
+    if (!isInitialized) {
+      // Başlanğıcda təsadüfi vaxtları təyin et
+      const randomTimes = generateRandomTimes();
+      setTimeRemaining(randomTimes);
+      setIsInitialized(true);
+    }
     
     const timer = setInterval(() => {
       setTimeRemaining(prev => {
@@ -66,6 +69,10 @@ function Tracing() {
           
           // Növbəti mərhələyə keç
           setCurrentStage(currentStage + 1);
+          
+          // Yeni təsadüfi vaxtları təyin et
+          const newRandomTimes = generateRandomTimes();
+          setTimeRemaining(newRandomTimes);
         }
         
         return newTimes;
@@ -106,8 +113,7 @@ function Tracing() {
       <h1 className="text-3xl font-bold mb-6">Sifarişinizin İzləmə Səhifəsi</h1>
       
       <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
-       
-        
+        {/* Progress bar */}
         <div className="w-full bg-gray-200 rounded-full h-2.5 mb-6 overflow-hidden">
           <div 
             className="bg-blue-600 h-2.5 rounded-full transition-all duration-300" 
@@ -163,81 +169,9 @@ function Tracing() {
         </div>
       </div>
       
-      {/* Xəritə və avtomobil animasiyası */}
-      <div className="relative mx-auto w-full max-w-4xl bg-gray-50 p-4 rounded-lg shadow-md mb-8">
-        <h2 className="text-xl font-bold mb-4">Canlı İzləmə</h2>
-        <svg viewBox="0 0 800 300" className="w-full h-auto">
-          <defs>
-            {/* Daha realistik marşrut */}
-            <path id="route" d="M100,250 C150,250 200,100 300,100 S450,150 500,150 S650,200 700,200" />
-            
-            {/* Daha detallı avtomobil */}
-            <g id="car">
-              <rect x="-15" y="-8" width="30" height="16" rx="3" fill="#4285F4" />
-              <rect x="-12" y="-6" width="24" height="8" rx="1" fill="#A5CAF0" />
-              <circle cx="-9" cy="8" r="4" fill="#333" />
-              <circle cx="-9" cy="8" r="2" fill="#666" />
-              <circle cx="9" cy="8" r="4" fill="#333" />
-              <circle cx="9" cy="8" r="2" fill="#666" />
-            </g>
-            
-            {/* Başlanğıc nöqtəsi */}
-            <g id="startPoint">
-              <circle cx="0" cy="0" r="10" fill="#4CAF50" />
-              <circle cx="0" cy="0" r="5" fill="white" />
-            </g>
-            
-            {/* Son nöqtə */}
-            <g id="endPoint">
-              <circle cx="0" cy="0" r="10" fill="#F44336" />
-              <path d="M-5,-5 L5,5 M-5,5 L5,-5" stroke="white" strokeWidth="2" />
-            </g>
-          </defs>
-          
-          {/* Xəritə arxa planı */}
-          <rect width="800" height="300" fill="#E6EAF0" rx="10" />
-          
-          {/* Yollar */}
-          <path d="M50,50 H750" stroke="#CCC" strokeWidth="5" strokeDasharray="5,5" />
-          <path d="M50,150 H750" stroke="#CCC" strokeWidth="5" strokeDasharray="5,5" />
-          <path d="M50,250 H750" stroke="#CCC" strokeWidth="5" strokeDasharray="5,5" />
-          <path d="M150,20 V280" stroke="#CCC" strokeWidth="5" strokeDasharray="5,5" />
-          <path d="M350,20 V280" stroke="#CCC" strokeWidth="5" strokeDasharray="5,5" />
-          <path d="M550,20 V280" stroke="#CCC" strokeWidth="5" strokeDasharray="5,5" />
-          
-          {/* Marşrut */}
-          <use href="#route" fill="none" stroke="#0077CC" strokeWidth="3" strokeDasharray="10,5" />
-          
-          {/* Avtomobil animasiyası - mərhələyə görə hərəkət edir */}
-          <use href="#car">
-            <animateMotion 
-              dur="10s" 
-              repeatCount="indefinite" 
-              keyPoints={`0;${Math.min(1, (calculateProgress() / 100))}`}
-              keyTimes="0;1"
-              calcMode="linear"
-            >
-              <mpath href="#route" />
-            </animateMotion>
-          </use>
-          
-          {/* Başlanğıc nöqtəsi */}
-          <use href="#startPoint" x="100" y="250" />
-          
-          {/* Son nöqtə */}
-          <use href="#endPoint" x="700" y="200" />
-          
-          {/* Mətn etiketləri */}
-          <text x="80" y="280" fill="#333" fontWeight="bold" fontSize="14">Amore</text>
-          <text x="700" y="230" fill="#333" fontWeight="bold" fontSize="14">Siz</text>
-        </svg>
-      </div>
-      
-
-      
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link 
-      to={'/cabinet'}
+          to={'/cabinet'}
           className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
         >
           Kabinetə qayıt

@@ -123,7 +123,7 @@ function Header() {
 
                                 <span>Ünvanlar</span>
                             </Link>
-                            <Link to="/Allcategorys" className="flex items-center gap-2 text-gray-700 hover:text-[#de9f69] text-[16px] font-medium transition-colors duration-300">
+                            <Link to="/Allcategory" className="flex items-center gap-2 text-gray-700 hover:text-[#de9f69] text-[16px] font-medium transition-colors duration-300">
 
                                 <span>Kateqoriyalar</span>
                             </Link>
@@ -210,22 +210,12 @@ function Header() {
                             </div>
                             <div id="profile-dropdown" className="relative group">
 
-                                <div className="p-2 rounded-full transition-colors duration-300 group-hover:bg-gray-100 cursor-pointer" onClick={handleProfileClick}>
-                                    <FaUser className={`text-lg ${user ? 'text-[#de9f69]' : 'text-gray-700'}`} />
-                                </div>
+                            
                                 <span className="absolute z-30 -bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                                     {user ? 'Profilim' : 'Daxil ol'}
                                 </span>
                             </div>
-                            <Link
-                                to="Allcategory"
-                                className={`rounded-full font-medium flex items-center justify-center transition-all duration-300 ${isScrolled
-                                        ? 'bg-[#de9f69] text-white px-6 py-2 hover:bg-[#c48951]'
-                                        : 'border-2 border-[#de9f69] text-[#de9f69] px-5 py-1.5 hover:bg-[#de9f69] hover:text-white'
-                                    }`}
-                            >
-                                Sifariş et
-                            </Link>
+                 
                             <div className="xl:hidden relative group">
                                 <div className="p-2 rounded-full transition-colors duration-300 group-hover:bg-gray-100 cursor-pointer" onClick={toggleMenu}>
                                     <IoMenu className="text-2xl text-gray-700" />
@@ -271,7 +261,15 @@ function Header() {
                         </Link>
 
                         {/* Order Button in Mobile Menu */}
-                   
+                        <Link
+                                to="Allcategory"
+                                className={`rounded-full font-medium flex items-center justify-center transition-all duration-300 ${isScrolled
+                                        ? 'bg-[#de9f69] text-white px-6 py-2 hover:bg-[#c48951]'
+                                        : 'border-2 border-[#de9f69] text-[#de9f69] px-5 py-1.5 hover:bg-[#de9f69] hover:text-white'
+                                    }`}
+                            >
+                                Sifariş et
+                            </Link>
                     </div>
 
                     {/* User Info Section */}
