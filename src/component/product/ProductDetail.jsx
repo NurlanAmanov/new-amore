@@ -125,19 +125,29 @@ const ProductDetail = () => {
           <hr />
           <div className="mt-4 flex lg:flex-row flex-col justify-start my-6 lg:my-2 lg:justify-between items-center lg:w-[400px]">
             <div className="text-lg font-medium">Ölçü:</div>
-            <div className="flex mt-2">
-              {product.productVariants.map(variant => (
-                <button
-                  key={variant.variantId}
-                  onClick={() => setSelectedSize(variant.variant.name)}
-                  className={`p-3 px-10 py-2 border text-sm font-light text-[20px] font-poppins ${
-                    selectedSize === variant.variant.name ? 'bg-[#DB9457] text-white' : 'bg-white text-black border-gray-400'
-                  }`}
-                >
-                  {variant.variant.name}
-                </button>
-              ))}
-            </div>
+            {product?.productVariants?.length > 0 ? (
+  <div className="flex mt-2">
+    {product.productVariants.map((variant) => (
+      <button
+        key={variant.variantId}
+        onClick={() => setSelectedSize(variant.variant?.name || "Bilinməyən Ölçü")}
+        className={`p-3 px-10 py-2 border text-sm font-light text-[20px] font-poppins ${
+          selectedSize === variant.variant?.name ? 'bg-[#DB9457] text-white' : 'bg-white text-black border-gray-400'
+        }`}
+      >
+        {variant.variant?.name || "Bilinməyən Ölçü"}
+      </button>
+
+
+
+
+    ))}
+  </div>
+) : (
+  <div className="text-gray-500 text-sm">Ölçü mövcud deyil</div>
+)}
+
+
           </div>
           <div className="mt-4 flex items-center gap-4">
             <button
