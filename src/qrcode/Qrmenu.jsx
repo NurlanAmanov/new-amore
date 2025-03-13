@@ -71,6 +71,7 @@ function Qrmenu() {
     setSelectedProduct(null);
     setOrderStatus({ success: false, message: "" });
   };
+
   const handleOrderSubmit = async () => {
     if (!selectedProduct) {
       setOrderStatus({
@@ -79,10 +80,10 @@ function Qrmenu() {
       });
       return;
     }
-  
+
     // Məhsul ID-ni əldə etməyə cəhd edirik
     const productId = String(selectedProduct.id);
-  
+
     if (!productId) {
       console.error("Məhsul ID tapılmadı:", selectedProduct);
       setOrderStatus({
@@ -91,63 +92,60 @@ function Qrmenu() {
       });
       return;
     }
-  
+
     console.log("Sifariş göndərilir, productId:", productId);
-  
+
     try {
       setLoading(true);
-  
-      // BackEnd-in gözlədiyi formatda data hazırlayaq
-      const orderData = {
-        ProductIds: [productId], // API tərəfdən array tələb edilə bilər
-        TableId: tableId
-      };
-  
-      console.log("Göndərilən data:", orderData);
-  
+
+      // FormData yaradırıq
+      const formData = new FormData();
+      formData.append("ProductIds", productId); // Nəzərə alın ki "ProductIds" istifadə edilir, "ProductId" yox
+      formData.append("TableId", tableId); // Yaradılan Table ID burada istifadə edilir
+
+      console.log("Göndərilən formData:", {
+        ProductIds: productId,
+        TableId: tableId,
+      });
+
       const response = await axios.post(
         `${API_BASE_URL}/api/Order/create-qr-order`,
-        orderData, // JSON formatında göndəririk, FormData deyil
+        formData,
         {
           headers: {
-            'Accept': '*/*',
-            'Content-Type': 'application/json' // FormData deyil, JSON göndəririk
+            accept: "*/*",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-  
+
       console.log("API cavabı:", response.data);
-  
+
       // Uğurlu cavab alındıqda
       setOrderStatus({
         success: true,
         message: "Sifariş uğurla verildi!",
       });
-  
+
       // 2 saniyə sonra modal bağlanır
       setTimeout(() => {
         closeModal();
       }, 2000);
     } catch (error) {
       console.error("Sifariş göndərmək mümkün olmadı:", error);
-      
-      // Daha detallı xəta mesajı göstərək
-      const errorMessage = error.response?.data?.message || 
-                           error.response?.data?.title || 
-                           error.message || 
-                           "Bilinməyən xəta";
-      
-      // Xətanın daha detallı analizini edək və göstərək
       console.error("Xəta detalları:", error.response?.data);
-  
+
       setOrderStatus({
         success: false,
-        message: "Sifariş göndərmək mümkün olmadı. Xəta: " + errorMessage,
+        message:
+          "Sifariş göndərmək mümkün olmadı. Xəta: " +
+          (error.response?.data?.message || error.message || "Bilinməyən xəta"),
       });
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <>
       <div className="qrmenu-container block sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden">

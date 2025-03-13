@@ -59,7 +59,7 @@ function Slider() {
     smooth={true} // Yavaşca keçid üçün
     duration={1000} // 1 saniyəlik animasiya müddəti
     offset={-70} // İstəyə bağlı olaraq, yuxarıda qalacaq boşluğu tənzimləyin
-    className="inline-flex items-center px-8 py-3.5"
+    className="inline-flex items-center px-3 py-1.5"
   >
     <span>Keçid et</span>
     <FaLongArrowAltRight className="ml-2 transform transition-transform group-hover:translate-x-1" />
@@ -68,7 +68,7 @@ function Slider() {
               
               <a 
                 href="#discover" 
-                className="inline-flex items-center px-8 py-3.5 border-2 border-[#de9f69] text-[#de9f69] font-medium rounded-lg transition-all hover:bg-[#de9f69] hover:text-white"
+                className="inline-flex items-center px-3 py-1.5 border-2 border-[#de9f69] text-[#de9f69] font-medium rounded-lg transition-all hover:bg-[#de9f69] hover:text-white"
               >
                 Daha çox öyrən
               </a>

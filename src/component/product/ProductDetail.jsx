@@ -17,6 +17,7 @@ const ProductDetail = () => {
   const [commentsCount, setCommentsCount] = useState(0); // Şərhlərin sayını saxlamaq üçün state
   const [averageRating, setAverageRating] = useState(0);  // Orta reytinq
   const [isLiked, setIsLiked] = useState(false); // Məhsulun bəyənilib-bəyənilmədiyini izləmək üçün
+console.log(product);
 
   useEffect(() => {
     const fetchData = async () => {
