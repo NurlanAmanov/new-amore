@@ -83,7 +83,7 @@ const SpotifyPlayer = () => {
           </button>
         </>
       ) : (
-        <p>⏳ Loading Spotify Player...</p>
+        <p>⏳ Spotify yüklənir</p>
       )}
     </div>
   );
